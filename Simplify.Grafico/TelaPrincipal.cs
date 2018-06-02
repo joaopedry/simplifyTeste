@@ -136,7 +136,7 @@ namespace Simplify.Grafico
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btProcessEnviados_Click(object sender, EventArgs e)
@@ -174,7 +174,22 @@ namespace Simplify.Grafico
 
         }
 
-        
+        private void TelaPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            {
+                if (MessageBox.Show("Deseja realmente sair?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            TelaAjustes ajustes = new TelaAjustes();
+            
+            ajustes.Show();
+        }
     }
     }
 
