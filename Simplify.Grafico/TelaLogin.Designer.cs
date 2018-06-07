@@ -35,8 +35,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbSenha = new System.Windows.Forms.TextBox();
-            this.tbUsuario = new System.Windows.Forms.TextBox();
+            this.tbSenhaLogin = new System.Windows.Forms.TextBox();
+            this.tbUsuarioLogin = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
@@ -50,10 +50,10 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.tbSenha);
-            this.panel1.Controls.Add(this.tbUsuario);
+            this.panel1.Controls.Add(this.tbSenhaLogin);
+            this.panel1.Controls.Add(this.tbUsuarioLogin);
             this.panel1.Location = new System.Drawing.Point(2, 2);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(315, 283);
             this.panel1.TabIndex = 0;
@@ -62,7 +62,7 @@
             // btSair
             // 
             this.btSair.Location = new System.Drawing.Point(226, 188);
-            this.btSair.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btSair.Margin = new System.Windows.Forms.Padding(2);
             this.btSair.Name = "btSair";
             this.btSair.Size = new System.Drawing.Size(70, 27);
             this.btSair.TabIndex = 7;
@@ -72,7 +72,7 @@
             // btLogin
             // 
             this.btLogin.Location = new System.Drawing.Point(126, 188);
-            this.btLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btLogin.Margin = new System.Windows.Forms.Padding(2);
             this.btLogin.Name = "btLogin";
             this.btLogin.Size = new System.Drawing.Size(70, 27);
             this.btLogin.TabIndex = 6;
@@ -113,23 +113,23 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Usuário:";
             // 
-            // tbSenha
+            // tbSenhaLogin
             // 
-            this.tbSenha.Location = new System.Drawing.Point(126, 138);
-            this.tbSenha.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tbSenha.Name = "tbSenha";
-            this.tbSenha.Size = new System.Drawing.Size(171, 20);
-            this.tbSenha.TabIndex = 1;
-            this.tbSenha.UseSystemPasswordChar = true;
+            this.tbSenhaLogin.Location = new System.Drawing.Point(126, 138);
+            this.tbSenhaLogin.Margin = new System.Windows.Forms.Padding(2);
+            this.tbSenhaLogin.Name = "tbSenhaLogin";
+            this.tbSenhaLogin.Size = new System.Drawing.Size(171, 20);
+            this.tbSenhaLogin.TabIndex = 1;
+            this.tbSenhaLogin.UseSystemPasswordChar = true;
             // 
-            // tbUsuario
+            // tbUsuarioLogin
             // 
-            this.tbUsuario.Location = new System.Drawing.Point(126, 107);
-            this.tbUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tbUsuario.Name = "tbUsuario";
-            this.tbUsuario.Size = new System.Drawing.Size(171, 20);
-            this.tbUsuario.TabIndex = 0;
-            this.tbUsuario.TextChanged += new System.EventHandler(this.tbUsuario_TextChanged);
+            this.tbUsuarioLogin.Location = new System.Drawing.Point(126, 107);
+            this.tbUsuarioLogin.Margin = new System.Windows.Forms.Padding(2);
+            this.tbUsuarioLogin.Name = "tbUsuarioLogin";
+            this.tbUsuarioLogin.Size = new System.Drawing.Size(171, 20);
+            this.tbUsuarioLogin.TabIndex = 0;
+            this.tbUsuarioLogin.TextChanged += new System.EventHandler(this.tbUsuario_TextChanged);
             // 
             // label4
             // 
@@ -148,7 +148,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(322, 19);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(264, 250);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -164,7 +164,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label4);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(604, 332);
             this.MinimizeBox = false;
@@ -189,8 +189,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbSenha;
-        private System.Windows.Forms.TextBox tbUsuario;
+        private System.Windows.Forms.TextBox tbSenhaLogin;
+        private System.Windows.Forms.TextBox tbUsuarioLogin;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btSair;
         private System.Windows.Forms.Button btLogin;
