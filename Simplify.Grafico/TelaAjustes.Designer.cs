@@ -31,10 +31,11 @@
             this.btAdicionarUsuario = new System.Windows.Forms.Button();
             this.btRemoverUsuario = new System.Windows.Forms.Button();
             this.dgUsuario = new System.Windows.Forms.DataGridView();
-            this.btAlterarUsuario = new System.Windows.Forms.Button();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Login = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Administrador = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btAlterarUsuario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgUsuario)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,7 +52,7 @@
             // 
             // btRemoverUsuario
             // 
-            this.btRemoverUsuario.Location = new System.Drawing.Point(89, 10);
+            this.btRemoverUsuario.Location = new System.Drawing.Point(153, 10);
             this.btRemoverUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.btRemoverUsuario.Name = "btRemoverUsuario";
             this.btRemoverUsuario.Size = new System.Drawing.Size(68, 40);
@@ -68,7 +69,8 @@
             this.dgUsuario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nome,
             this.Email,
-            this.Login});
+            this.Login,
+            this.Administrador});
             this.dgUsuario.Location = new System.Drawing.Point(9, 67);
             this.dgUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.dgUsuario.Name = "dgUsuario";
@@ -77,9 +79,37 @@
             this.dgUsuario.TabIndex = 2;
             this.dgUsuario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgUsuario_CellContentClick);
             // 
+            // Nome
+            // 
+            this.Nome.DataPropertyName = "Nome_usuario";
+            this.Nome.HeaderText = "Nome";
+            this.Nome.Name = "Nome";
+            this.Nome.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.DataPropertyName = "Email_usuario";
+            this.Email.HeaderText = "E-mail";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // Login
+            // 
+            this.Login.DataPropertyName = "Login_usuario";
+            this.Login.HeaderText = "Login";
+            this.Login.Name = "Login";
+            this.Login.ReadOnly = true;
+            // 
+            // Administrador
+            // 
+            this.Administrador.DataPropertyName = "Administrador_usuario";
+            this.Administrador.HeaderText = "Administrador";
+            this.Administrador.Name = "Administrador";
+            this.Administrador.ReadOnly = true;
+            // 
             // btAlterarUsuario
             // 
-            this.btAlterarUsuario.Location = new System.Drawing.Point(169, 10);
+            this.btAlterarUsuario.Location = new System.Drawing.Point(81, 10);
             this.btAlterarUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.btAlterarUsuario.Name = "btAlterarUsuario";
             this.btAlterarUsuario.Size = new System.Drawing.Size(68, 40);
@@ -88,29 +118,11 @@
             this.btAlterarUsuario.UseVisualStyleBackColor = true;
             this.btAlterarUsuario.Click += new System.EventHandler(this.btAlterarUsuario_Click);
             // 
-            // Nome
-            // 
-            this.Nome.DataPropertyName = "Nome_usuario";
-            this.Nome.HeaderText = "Nome";
-            this.Nome.Name = "Nome";
-            // 
-            // Email
-            // 
-            this.Email.DataPropertyName = "Email_usuario";
-            this.Email.HeaderText = "E-mail";
-            this.Email.Name = "Email";
-            // 
-            // Login
-            // 
-            this.Login.DataPropertyName = "Login_usuario";
-            this.Login.HeaderText = "Login";
-            this.Login.Name = "Login";
-            // 
             // TelaAjustes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(606, 353);
+            this.ClientSize = new System.Drawing.Size(606, 354);
             this.Controls.Add(this.btAlterarUsuario);
             this.Controls.Add(this.dgUsuario);
             this.Controls.Add(this.btRemoverUsuario);
@@ -138,5 +150,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn Login;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Administrador;
     }
 }
