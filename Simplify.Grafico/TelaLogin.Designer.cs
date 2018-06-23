@@ -35,8 +35,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbSenhaLogin = new System.Windows.Forms.TextBox();
-            this.tbUsuarioLogin = new System.Windows.Forms.TextBox();
+            this.tbSenha = new System.Windows.Forms.TextBox();
+            this.tbUsuario = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
@@ -50,8 +50,8 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.tbSenhaLogin);
-            this.panel1.Controls.Add(this.tbUsuarioLogin);
+            this.panel1.Controls.Add(this.tbSenha);
+            this.panel1.Controls.Add(this.tbUsuario);
             this.panel1.Location = new System.Drawing.Point(2, 2);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
@@ -61,23 +61,26 @@
             // 
             // btSair
             // 
+            this.btSair.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btSair.Location = new System.Drawing.Point(226, 188);
             this.btSair.Margin = new System.Windows.Forms.Padding(2);
             this.btSair.Name = "btSair";
             this.btSair.Size = new System.Drawing.Size(70, 27);
-            this.btSair.TabIndex = 7;
+            this.btSair.TabIndex = 4;
             this.btSair.Text = "Sair";
-            this.btSair.UseVisualStyleBackColor = true;
+            this.btSair.UseVisualStyleBackColor = false;
+            this.btSair.Click += new System.EventHandler(this.btSair_Click);
             // 
             // btLogin
             // 
+            this.btLogin.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btLogin.Location = new System.Drawing.Point(126, 188);
             this.btLogin.Margin = new System.Windows.Forms.Padding(2);
             this.btLogin.Name = "btLogin";
             this.btLogin.Size = new System.Drawing.Size(70, 27);
-            this.btLogin.TabIndex = 6;
+            this.btLogin.TabIndex = 3;
             this.btLogin.Text = "Acessar";
-            this.btLogin.UseVisualStyleBackColor = true;
+            this.btLogin.UseVisualStyleBackColor = false;
             this.btLogin.Click += new System.EventHandler(this.btLogin_Click);
             // 
             // label3
@@ -113,23 +116,25 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Usuário:";
             // 
-            // tbSenhaLogin
+            // tbSenha
             // 
-            this.tbSenhaLogin.Location = new System.Drawing.Point(126, 138);
-            this.tbSenhaLogin.Margin = new System.Windows.Forms.Padding(2);
-            this.tbSenhaLogin.Name = "tbSenhaLogin";
-            this.tbSenhaLogin.Size = new System.Drawing.Size(171, 20);
-            this.tbSenhaLogin.TabIndex = 1;
-            this.tbSenhaLogin.UseSystemPasswordChar = true;
+            this.tbSenha.Location = new System.Drawing.Point(126, 138);
+            this.tbSenha.Margin = new System.Windows.Forms.Padding(2);
+            this.tbSenha.Name = "tbSenha";
+            this.tbSenha.Size = new System.Drawing.Size(171, 20);
+            this.tbSenha.TabIndex = 2;
+            this.tbSenha.UseSystemPasswordChar = true;
+            this.tbSenha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSenha_KeyDown);
             // 
-            // tbUsuarioLogin
+            // tbUsuario
             // 
-            this.tbUsuarioLogin.Location = new System.Drawing.Point(126, 107);
-            this.tbUsuarioLogin.Margin = new System.Windows.Forms.Padding(2);
-            this.tbUsuarioLogin.Name = "tbUsuarioLogin";
-            this.tbUsuarioLogin.Size = new System.Drawing.Size(171, 20);
-            this.tbUsuarioLogin.TabIndex = 0;
-            this.tbUsuarioLogin.TextChanged += new System.EventHandler(this.tbUsuario_TextChanged);
+            this.tbUsuario.Location = new System.Drawing.Point(126, 107);
+            this.tbUsuario.Margin = new System.Windows.Forms.Padding(2);
+            this.tbUsuario.Name = "tbUsuario";
+            this.tbUsuario.Size = new System.Drawing.Size(171, 20);
+            this.tbUsuario.TabIndex = 1;
+            this.tbUsuario.TextChanged += new System.EventHandler(this.tbUsuario_TextChanged);
+            this.tbUsuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSenha_KeyDown);
             // 
             // label4
             // 
@@ -173,7 +178,6 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.TelaLhogin_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -189,8 +193,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbSenhaLogin;
-        private System.Windows.Forms.TextBox tbUsuarioLogin;
+        private System.Windows.Forms.TextBox tbSenha;
+        private System.Windows.Forms.TextBox tbUsuario;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btSair;
         private System.Windows.Forms.Button btLogin;

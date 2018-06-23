@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Simplify.Negocio.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,10 @@ namespace Simplify.Grafico
 {
     public partial class TelaPrincipal : Form
     {
+        TelaProcessosEnviados enviado = new TelaProcessosEnviados();
+        TelaProcessosNegados negado = new TelaProcessosNegados();
+        TelaProcessosPendencia pendente = new TelaProcessosPendencia();
+
         private int childFormNumber = 0;
 
         public TelaPrincipal()
@@ -65,11 +71,7 @@ namespace Simplify.Grafico
         private void PasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
         }
-
-       
-
-       
-
+        
         private void CascadeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LayoutMdi(MdiLayout.Cascade);
@@ -98,16 +100,6 @@ namespace Simplify.Grafico
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btSeguradora_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.seguradoralider.com.br");
@@ -131,10 +123,8 @@ namespace Simplify.Grafico
             }
             else
             {
-
                 mantercliente.Show();
-            }
-            
+            }           
         }
 
         private void btProcessAndamento_Click(object sender, EventArgs e)
@@ -151,7 +141,6 @@ namespace Simplify.Grafico
             }
             else
             {
-
                 telaandamento.Show();
             }
             
@@ -170,11 +159,8 @@ namespace Simplify.Grafico
             }
             else
             {
-
                 telaenviados.Show();
             }
-            
-
         }
 
         private void btProcessocompendencia_Click(object sender, EventArgs e)
@@ -190,7 +176,6 @@ namespace Simplify.Grafico
             }
             else
             {
-
                 telapendencia.Show();
             }
            
@@ -209,52 +194,40 @@ namespace Simplify.Grafico
             }
             else
             {
-
                 telanegados.Show();
-            }
-
-            
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgAniversariantes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            }            
         }
 
         private void TelaPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
+            
+                
+            if (MessageBox.Show("Deseja realmente sair?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
-                if (MessageBox.Show("Deseja realmente sair?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                {
-                    e.Cancel = true;
-                }
+                e.Cancel = true;
+            }
+            else
+            {
+                Application.ExitThread();
             }
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            TelaAjustes ajustes = new TelaAjustes();
+            TelaSenhaUsuarios tela = new TelaSenhaUsuarios();
 
-            if (Application.OpenForms.OfType<TelaAjustes>().Count() > 0)
+            if (Application.OpenForms.OfType<TelaSenhaUsuarios>().Count() > 0)
             {
                 MessageBox.Show("Esta janela já está em execução.", "!",
                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                Application.OpenForms.OfType<TelaAjustes>().First().Focus();
+                Application.OpenForms.OfType<TelaSenhaUsuarios>().First().Focus();
             }
             else
             {
-
-                ajustes.Show();
+                tela.Show();
             }
 
 
-
-            
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -268,7 +241,6 @@ namespace Simplify.Grafico
             }
             else
             {
-
                 ajuda.Show();
             }
         }
@@ -285,7 +257,6 @@ namespace Simplify.Grafico
             }
             else
             {
-
                 telarelatorio.Show();
             }
             
@@ -294,8 +265,8 @@ namespace Simplify.Grafico
         private void btConsultarProcesso_Click(object sender, EventArgs e)
         {
             TelaListaProcessos tela = new TelaListaProcessos();
-            tela.MdiParent = this;
-            panel5.Controls.Add(tela);
+           tela.MdiParent = this;
+           panel5.Controls.Add(tela);
 
             if (Application.OpenForms.OfType<TelaListaProcessos>().Count() > 0)
             {
@@ -304,12 +275,38 @@ namespace Simplify.Grafico
                 Application.OpenForms.OfType<TelaListaProcessos>().First().Focus();
             }
             else
-            {
-                
+            {               
                 tela.Show();
             }
             
         }
+
+        public void AbreTelaLogin_load(object sender, EventArgs e)
+        {
+            TelaLogin tela = new TelaLogin();
+            tela.MdiParent = this.MdiParent;
+            tela.Show();
+        }
+
+        private void TelaPrincipal_Load(object sender, EventArgs e)
+        {
+            
+        }
+    
+
+        //Buscando contadores dos tipos de processos
+        public void Buscacount(String count)
+        {
+            lbProcessosEnviados.Text = enviado.CarregaProcessoEnviado(count);
+            lbProcessoNegado.Text = negado.CarregaProcessoNegado(count);
+            lbProcessoPendencia.Text = pendente.CarregaProcessoPendente(count);
+        }
+
+        //carregar contadores
+        private void TelaPrincipal_Activated(object sender, EventArgs e)
+        {
+            Buscacount(null);
+        }
     }
-    }
+}
 

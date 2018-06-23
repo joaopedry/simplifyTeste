@@ -5,18 +5,18 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data;
 
 namespace Simplify.Grafico
 {
+
     public partial class TelaLogin : Form
     {
+        public Usuario LoginInformado { get; set; }
 
         private Banco banco = new Banco();
 
@@ -30,14 +30,14 @@ namespace Simplify.Grafico
         {
             /*Criando usuario root*/
 
-            if(this.banco.Usuarios.Where(c => c.Id == 1).Any())
+            if (this.banco.Usuarios.Where(c => c.Id == 1).Any())
             {
             }
             else
             {
                 Usuario usuario = new Usuario();
                 usuario.Id = 1;
-                usuario.Administrador_usuario = true;
+                usuario.Funcao_usuario = "Administrador";
                 usuario.Nome_usuario = "root";
                 usuario.Email_usuario = "root@simplify.com.br";
                 usuario.Login_usuario = "root";
@@ -47,21 +47,38 @@ namespace Simplify.Grafico
                 validacao = Program.Gerenciador.AdicionarUsuario(usuario);
             }
         }
-     
+
+        
+
         private void btLogin_Click(object sender, EventArgs e)
         {
+            Usuario usuario = new Usuario();
+
+            usuario.Login_usuario = tbUsuario.Text;
+            usuario.Password_usuario = tbSenha.Text;
+
+            Validacao validacao;
+            validacao = Program.Gerenciador.VerificaUsuario(usuario);
             
+            if (validacao.UsuarioValido)
+            {
+                AbreTelaPrincipal();
+            }
+            else
+            {
+                MessageBox.Show("Usuário ou senha incorretos!", "Erro",
+                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
-        private void TelaLhogin_Load(object sender, EventArgs e)
+        public void AbreTelaPrincipal()
         {
-            btLogin.Text = "OK";
-            btLogin.DialogResult = DialogResult.OK;
-            btSair.Text = "Cancelar";
-            btSair.DialogResult = DialogResult.Cancel;
-            this.AcceptButton = btLogin;
-            this.CancelButton = btSair;
+            TelaPrincipal tela = new TelaPrincipal();
+            this.Hide();
+            tela.ShowDialog();
         }
+
+        
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -72,6 +89,18 @@ namespace Simplify.Grafico
         {
 
         }
-        
+
+        private void btSair_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void tbSenha_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btLogin_Click(sender, e);
+            }
+        }
     }
 }

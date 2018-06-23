@@ -38,7 +38,7 @@ namespace Simplify.Grafico
                 usuario.Id = -1;
                 //passa indentificador com valor negativo se não conseguir converter
             }
-            usuario.Administrador_usuario = cbAdminUsuario.Checked;
+            usuario.Funcao_usuario = gbFuncao.Controls.OfType<RadioButton>().SingleOrDefault(rad => rad.Checked == true).Text;
             usuario.Nome_usuario = tbNomeUsuario.Text;
             usuario.Email_usuario = tbEmailUsuario.Text;
             usuario.Login_usuario = tbLoginUsuario.Text;
@@ -79,11 +79,6 @@ namespace Simplify.Grafico
 
         }
 
-        private void ManterUsuario_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void ManterUsuario_Shown(object sender, EventArgs e)
         {
             if (UsuarioSelecionado != null)
@@ -93,7 +88,7 @@ namespace Simplify.Grafico
                 this.tbEmailUsuario.Text = UsuarioSelecionado.Email_usuario;
                 this.tbLoginUsuario.Text = UsuarioSelecionado.Login_usuario;
                 this.tbSenhaUsuario.Text = UsuarioSelecionado.Password_usuario;
-                this.cbAdminUsuario.Checked = UsuarioSelecionado.Administrador_usuario;
+                this.gbFuncao.Text = UsuarioSelecionado.Funcao_usuario;
             }
         }
 
@@ -113,6 +108,11 @@ namespace Simplify.Grafico
         }
 
         private void tbNomeUsuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ManterUsuario_Load(object sender, EventArgs e)
         {
 
         }
