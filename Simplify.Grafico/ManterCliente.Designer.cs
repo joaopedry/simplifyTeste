@@ -103,7 +103,7 @@
             this.rbINSSnao = new System.Windows.Forms.RadioButton();
             this.gbTipoAcidente = new System.Windows.Forms.GroupBox();
             this.rbPessoal = new System.Windows.Forms.RadioButton();
-            this.rbTipo = new System.Windows.Forms.RadioButton();
+            this.rbTransito = new System.Windows.Forms.RadioButton();
             this.rbTrabalho = new System.Windows.Forms.RadioButton();
             this.rtbObservacoes = new System.Windows.Forms.RichTextBox();
             this.tbHospital = new System.Windows.Forms.TextBox();
@@ -168,12 +168,13 @@
             this.rtbAbaObservacoes = new System.Windows.Forms.RichTextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.rbProcessoNegado = new System.Windows.Forms.RadioButton();
             this.rbProcessoPendencia = new System.Windows.Forms.RadioButton();
             this.rbProcessoEnviado = new System.Windows.Forms.RadioButton();
             this.label42 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gbStatus = new System.Windows.Forms.GroupBox();
+            this.rbProcessoAprovado = new System.Windows.Forms.RadioButton();
+            this.rbProcessoNegado = new System.Windows.Forms.RadioButton();
             this.ofdBoletimOcorrencia = new System.Windows.Forms.OpenFileDialog();
             this.ofdProntuario = new System.Windows.Forms.OpenFileDialog();
             this.ofdComprovanteResidencia = new System.Windows.Forms.OpenFileDialog();
@@ -204,6 +205,7 @@
             this.tbNome.Size = new System.Drawing.Size(200, 20);
             this.tbNome.TabIndex = 0;
             this.tbNome.TextChanged += new System.EventHandler(this.tbNome_TextChanged);
+            this.tbNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbValidacao_Letras);
             // 
             // tbindicacao
             // 
@@ -213,6 +215,7 @@
             this.tbindicacao.Size = new System.Drawing.Size(200, 20);
             this.tbindicacao.TabIndex = 1;
             this.tbindicacao.TextChanged += new System.EventHandler(this.tbindicacao_TextChanged);
+            this.tbindicacao.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbValidacao_Letras);
             // 
             // tbNascimento
             // 
@@ -242,6 +245,7 @@
             this.tbProfissao.Name = "tbProfissao";
             this.tbProfissao.Size = new System.Drawing.Size(200, 20);
             this.tbProfissao.TabIndex = 5;
+            this.tbProfissao.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbValidacao_Letras);
             // 
             // tbCpf
             // 
@@ -261,6 +265,7 @@
             this.tbEstadoCivil.Name = "tbEstadoCivil";
             this.tbEstadoCivil.Size = new System.Drawing.Size(200, 20);
             this.tbEstadoCivil.TabIndex = 7;
+            this.tbEstadoCivil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbValidacao_Letras);
             // 
             // tbSexo
             // 
@@ -270,6 +275,7 @@
             this.tbSexo.Size = new System.Drawing.Size(200, 20);
             this.tbSexo.TabIndex = 6;
             this.tbSexo.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
+            this.tbSexo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbValidacao_Letras);
             // 
             // Nome
             // 
@@ -974,7 +980,7 @@
             // gbTipoAcidente
             // 
             this.gbTipoAcidente.Controls.Add(this.rbPessoal);
-            this.gbTipoAcidente.Controls.Add(this.rbTipo);
+            this.gbTipoAcidente.Controls.Add(this.rbTransito);
             this.gbTipoAcidente.Controls.Add(this.rbTrabalho);
             this.gbTipoAcidente.Location = new System.Drawing.Point(147, 149);
             this.gbTipoAcidente.Margin = new System.Windows.Forms.Padding(2);
@@ -997,18 +1003,18 @@
             this.rbPessoal.Text = "PESSOAL";
             this.rbPessoal.UseVisualStyleBackColor = true;
             // 
-            // rbTipo
+            // rbTransito
             // 
-            this.rbTipo.AutoSize = true;
-            this.rbTipo.Checked = true;
-            this.rbTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbTipo.Location = new System.Drawing.Point(0, 7);
-            this.rbTipo.Name = "rbTipo";
-            this.rbTipo.Size = new System.Drawing.Size(70, 16);
-            this.rbTipo.TabIndex = 18;
-            this.rbTipo.TabStop = true;
-            this.rbTipo.Text = "TRANSITO";
-            this.rbTipo.UseVisualStyleBackColor = true;
+            this.rbTransito.AutoSize = true;
+            this.rbTransito.Checked = true;
+            this.rbTransito.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbTransito.Location = new System.Drawing.Point(0, 7);
+            this.rbTransito.Name = "rbTransito";
+            this.rbTransito.Size = new System.Drawing.Size(70, 16);
+            this.rbTransito.TabIndex = 18;
+            this.rbTransito.TabStop = true;
+            this.rbTransito.Text = "TRANSITO";
+            this.rbTransito.UseVisualStyleBackColor = true;
             // 
             // rbTrabalho
             // 
@@ -1612,36 +1618,25 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // rbProcessoNegado
-            // 
-            this.rbProcessoNegado.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.rbProcessoNegado.AutoSize = true;
-            this.rbProcessoNegado.Location = new System.Drawing.Point(152, 7);
-            this.rbProcessoNegado.Name = "rbProcessoNegado";
-            this.rbProcessoNegado.Size = new System.Drawing.Size(63, 17);
-            this.rbProcessoNegado.TabIndex = 11;
-            this.rbProcessoNegado.TabStop = true;
-            this.rbProcessoNegado.Text = "Negado";
-            this.rbProcessoNegado.UseVisualStyleBackColor = true;
-            // 
             // rbProcessoPendencia
             // 
             this.rbProcessoPendencia.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.rbProcessoPendencia.AutoSize = true;
             this.rbProcessoPendencia.Checked = true;
-            this.rbProcessoPendencia.Location = new System.Drawing.Point(6, 7);
+            this.rbProcessoPendencia.Location = new System.Drawing.Point(24, 7);
             this.rbProcessoPendencia.Name = "rbProcessoPendencia";
             this.rbProcessoPendencia.Size = new System.Drawing.Size(71, 17);
             this.rbProcessoPendencia.TabIndex = 9;
             this.rbProcessoPendencia.TabStop = true;
             this.rbProcessoPendencia.Text = "Pendente";
             this.rbProcessoPendencia.UseVisualStyleBackColor = true;
+            this.rbProcessoPendencia.CheckedChanged += new System.EventHandler(this.rbProcessoPendencia_CheckedChanged);
             // 
             // rbProcessoEnviado
             // 
             this.rbProcessoEnviado.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.rbProcessoEnviado.AutoSize = true;
-            this.rbProcessoEnviado.Location = new System.Drawing.Point(82, 7);
+            this.rbProcessoEnviado.Location = new System.Drawing.Point(100, 7);
             this.rbProcessoEnviado.Name = "rbProcessoEnviado";
             this.rbProcessoEnviado.Size = new System.Drawing.Size(64, 17);
             this.rbProcessoEnviado.TabIndex = 10;
@@ -1675,14 +1670,39 @@
             // 
             // gbStatus
             // 
+            this.gbStatus.Controls.Add(this.rbProcessoAprovado);
             this.gbStatus.Controls.Add(this.rbProcessoEnviado);
             this.gbStatus.Controls.Add(this.rbProcessoNegado);
             this.gbStatus.Controls.Add(this.rbProcessoPendencia);
             this.gbStatus.Location = new System.Drawing.Point(144, 3);
             this.gbStatus.Name = "gbStatus";
-            this.gbStatus.Size = new System.Drawing.Size(283, 31);
+            this.gbStatus.Size = new System.Drawing.Size(318, 31);
             this.gbStatus.TabIndex = 18;
             this.gbStatus.TabStop = false;
+            // 
+            // rbProcessoAprovado
+            // 
+            this.rbProcessoAprovado.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.rbProcessoAprovado.AutoSize = true;
+            this.rbProcessoAprovado.Location = new System.Drawing.Point(239, 7);
+            this.rbProcessoAprovado.Name = "rbProcessoAprovado";
+            this.rbProcessoAprovado.Size = new System.Drawing.Size(71, 17);
+            this.rbProcessoAprovado.TabIndex = 12;
+            this.rbProcessoAprovado.TabStop = true;
+            this.rbProcessoAprovado.Text = "Aprovado";
+            this.rbProcessoAprovado.UseVisualStyleBackColor = true;
+            // 
+            // rbProcessoNegado
+            // 
+            this.rbProcessoNegado.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.rbProcessoNegado.AutoSize = true;
+            this.rbProcessoNegado.Location = new System.Drawing.Point(170, 7);
+            this.rbProcessoNegado.Name = "rbProcessoNegado";
+            this.rbProcessoNegado.Size = new System.Drawing.Size(63, 17);
+            this.rbProcessoNegado.TabIndex = 11;
+            this.rbProcessoNegado.TabStop = true;
+            this.rbProcessoNegado.Text = "Negado";
+            this.rbProcessoNegado.UseVisualStyleBackColor = true;
             // 
             // ofdBoletimOcorrencia
             // 
@@ -1704,12 +1724,10 @@
             this.Controls.Add(this.bt_salvar);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "ManterCliente";
             this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastrar Cliente";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManterCliente_FormClosing);
             this.Load += new System.EventHandler(this.ManterCliente_Load);
             this.Shown += new System.EventHandler(this.ManterCliente_Shown);
@@ -1823,7 +1841,7 @@
         private System.Windows.Forms.RadioButton rbINSSsim;
         private System.Windows.Forms.RadioButton rbPessoal;
         private System.Windows.Forms.RadioButton rbTrabalho;
-        private System.Windows.Forms.RadioButton rbTipo;
+        private System.Windows.Forms.RadioButton rbTransito;
         private System.Windows.Forms.RichTextBox rtbObservacoes;
         private System.Windows.Forms.TextBox tbHospital;
         private System.Windows.Forms.TextBox tbSocorrista;
@@ -1853,7 +1871,6 @@
         private System.Windows.Forms.GroupBox gbTipoAcidente;
         private System.Windows.Forms.GroupBox gbINSSAcidente;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.RadioButton rbProcessoNegado;
         private System.Windows.Forms.RadioButton rbProcessoPendencia;
         private System.Windows.Forms.RadioButton rbProcessoEnviado;
         private System.Windows.Forms.Label label42;
@@ -1892,5 +1909,7 @@
         private System.Windows.Forms.OpenFileDialog ofdCPF;
         private System.Windows.Forms.OpenFileDialog ofdCNH;
         private System.Windows.Forms.OpenFileDialog ofdDOCVeiculo;
+        private System.Windows.Forms.RadioButton rbProcessoAprovado;
+        private System.Windows.Forms.RadioButton rbProcessoNegado;
     }
 }
