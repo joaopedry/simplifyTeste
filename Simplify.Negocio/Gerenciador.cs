@@ -373,6 +373,7 @@ namespace Simplify.Negocio
             return validacao;
         }
 
+
         public Usuario BuscaUsuarioPorId(long id)
         {
             return this.banco.Usuarios.Where(c => c.Id == id).FirstOrDefault();
@@ -429,6 +430,26 @@ namespace Simplify.Negocio
             DateTime newDate = DateTime.Now.AddDays(-30);
             return this.banco.Clientes.Where(c => c.Status == "Negado")
                                       .Where(d => d.DTCriacao >= newDate)
+                                      .ToList();
+        }
+
+        public List<Cliente> RelatorioEnviado(DateTime DataInicialInformada, DateTime DataFinalInformada, String ResultadoEnviado)
+        {
+            
+            DateTime dtInicio = DataInicialInformada;
+            return this.banco.Clientes.Where(c => c.Status == "Enviado")
+                                      .Where(d => d.DTCriacao >= DataInicialInformada)
+                                      .Where(e => e.DTCriacao <= DataFinalInformada)
+                                      .ToList();
+
+        }
+
+        public List<Cliente> RelatorioDataFinal(DateTime DataFinalInformada)
+        {
+
+            DateTime dtFinal = DataFinalInformada;
+            return this.banco.Clientes.Where(c => c.Status == "Negado")
+                                      .Where(d => d.DTCriacao >= dtFinal)
                                       .ToList();
         }
 

@@ -396,6 +396,11 @@ namespace Simplify.Grafico
             series.Points.Add(Aprovados);
             series.Points.Add(Total);
         }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
 
