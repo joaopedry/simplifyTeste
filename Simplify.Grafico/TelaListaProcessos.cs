@@ -15,19 +15,12 @@ namespace Simplify.Grafico
 {
     public partial class TelaListaProcessos : Form
     {
-        Bitmap memoryImage;
         private PrintDocument printDocument1 = new PrintDocument();
         Cliente cliente = new Cliente();
+        public string ClienteProcesso;
         public TelaListaProcessos()
         {
             InitializeComponent();
-        }
-
-        public void Imprimir()
-        {
-            btImprimirFolhaDeRosto.Click += new EventHandler(btImprimirFolhaDeRosto_Click);
-            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
-            this.Controls.Add(btImprimirFolhaDeRosto);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -42,10 +35,15 @@ namespace Simplify.Grafico
 
         private void btBuscarProcesso_Click(object sender, EventArgs e)
         {
+            BuscandoProcesso();
+        }
+
+        public void BuscandoProcesso()
+        {
             if (tbBusca != null)
             {
                 cliente.CPF_dados = tbBusca.Text;
-
+                ClienteProcesso = tbBusca.Text;
                 Validacao validacao;
                 validacao = Program.Gerenciador.BuscaCliente(cliente);
 
@@ -64,6 +62,7 @@ namespace Simplify.Grafico
                 MessageBox.Show("Informe um CPF!", "",
                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+            //return cliente.CPF_dados;
         }
 
         public void CarregaCliente()
@@ -78,14 +77,14 @@ namespace Simplify.Grafico
             lbBairro.Text = cliente.Bairro_endereco1;
             lbReferencia.Text = cliente.Complemento_endereco1;
             lbLesoes.Text = cliente.Lesao_ocorrencia;
-            lbData.Text = cliente.Data_ocorrencia;
+            lbData.Text = cliente.Data_ocorrencia.ToString();
             lbSocorrista.Text = cliente.Socorrista_ocorrencia;
             lbProfissao.Text = cliente.Profissao_dados;
             lbVeiculos.Text = cliente.Veiculo_ocorrencia;
             lbNumerocasa.Text = cliente.Num_endereco1.ToString();
             lbCidade.Text = cliente.Cidade_endereco1;
             //lbRegistro.Text = cliente
-            lbHorario.Text = cliente.Horario_ocorrencia;
+            lbHorario.Text = cliente.Horario_ocorrencia.ToString();
             lbHospital.Text = cliente.Hospital_ocorrencia;
             lbTipo.Text = cliente.Tipo_ocorrencia;
             lbLocal.Text = cliente.Local_ocorrencia;
@@ -94,12 +93,25 @@ namespace Simplify.Grafico
         }
         private void CarregaDatagrid()
         {
-            dgTodosOsClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgTodosOsClientes.MultiSelect = false;
-            dgTodosOsClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgTodosOsClientes.AutoGenerateColumns = false;
-            List<Cliente> clientes = Program.Gerenciador.TodosOsClientes();
-            dgTodosOsClientes.DataSource = clientes;
+            if (tbBusca.Text == "")
+            {
+                dgTodosOsClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgTodosOsClientes.MultiSelect = false;
+                dgTodosOsClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgTodosOsClientes.AutoGenerateColumns = false;
+                List<Cliente> clientes = Program.Gerenciador.TodosOsClientes();
+                dgTodosOsClientes.DataSource = clientes;
+            }
+            else
+            {
+                dgTodosOsClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgTodosOsClientes.MultiSelect = false;
+                dgTodosOsClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgTodosOsClientes.AutoGenerateColumns = false;
+                List<Cliente> clientes = Program.Gerenciador.FiltraGrid(tbBusca.Text);
+                dgTodosOsClientes.DataSource = clientes;
+            }
+
         }
 
         private void TelaListaProcessos_Load(object sender, EventArgs e)
@@ -146,24 +158,16 @@ namespace Simplify.Grafico
 
         private void btImprimirFolhaDeRosto_Click(object sender, EventArgs e)
         {
+            
+
+
+            //btImprimirFolhaDeRosto.Click += new EventHandler(btImprimirFolhaDeRosto_Click);
+            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
+            
+            this.Controls.Add(btImprimirFolhaDeRosto);
+            
             CaptureScreen();
             printDocument1.Print();
-        }
-        
-        private void CaptureScreen()
-        {
-            Graphics myGraphics = this.CreateGraphics();
-            Size s = this.Size;
-            memoryImage = new Bitmap(s.Width, s.Height, myGraphics);
-            Graphics memoryGraphics = Graphics.FromImage(memoryImage);
-            memoryGraphics.CopyFromScreen(this.Location.X, this.Location.Y, 0, 0, s);
-            Imprimir();
-        }
-
-        private void printDocument1_PrintPage(System.Object sender,
-           System.Drawing.Printing.PrintPageEventArgs e)
-        {
-            e.Graphics.DrawImage(memoryImage, 0, 0);
         }
 
         private void dgTodosOsClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -174,6 +178,59 @@ namespace Simplify.Grafico
         private void TelaListaProcessos_Activated(object sender, EventArgs e)
         {
             CarregaDatagrid();
+        }
+
+        private void tbBusca_KeyUp(object sender, KeyEventArgs e)
+        {
+            CarregaDatagrid();
+        }
+        Bitmap memoryImage;
+        private void CaptureScreen()
+        {
+            Graphics myGraphics = this.CreateGraphics();
+            Size s = this.Size;
+            memoryImage = new Bitmap(s.Width, s.Height, myGraphics);
+            Graphics memoryGraphics = Graphics.FromImage(memoryImage);
+            memoryGraphics.CopyFromScreen(this.Location.X, this.Location.Y, -330, -50, s);
+            //Imprimir();
+            
+        }
+
+        private void printDocument1_PrintPage(System.Object sender,
+          System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(memoryImage, 0, 0);
+        }
+
+        private void Imprimir()
+        {
+            
+        }
+
+        private void btImprimirFolhaDeRosto_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void tbBusca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox t = sender as TextBox; // ou ComboBox
+
+            if (e.KeyChar >= 48 && e.KeyChar <= 57)
+            {
+                t.SelectionStart = t.Text.Length + 1;
+
+                if (t.Text.Length == 3 || t.Text.Length == 7)
+                    t.Text += ".";
+                else if (t.Text.Length == 11)
+                    t.Text += "-";
+                t.SelectionStart = t.Text.Length + 1;
+            }
+
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

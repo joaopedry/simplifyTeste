@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaProcessosAprovados));
             this.dgProcessosAprovados = new System.Windows.Forms.DataGridView();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,18 +57,21 @@
             this.Nome.DataPropertyName = "Nome_dados";
             this.Nome.HeaderText = "Nome";
             this.Nome.Name = "Nome";
+            this.Nome.ReadOnly = true;
             // 
             // CPF
             // 
             this.CPF.DataPropertyName = "CPF_dados";
             this.CPF.HeaderText = "CPF";
             this.CPF.Name = "CPF";
+            this.CPF.ReadOnly = true;
             // 
             // Status
             // 
             this.Status.DataPropertyName = "Status";
             this.Status.HeaderText = "Status";
             this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
             // 
             // TelaProcessosAprovados
             // 
@@ -75,6 +79,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(358, 434);
             this.Controls.Add(this.dgProcessosAprovados);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TelaProcessosAprovados";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TelaProcessosAprovados";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaProcessosEnviados));
             this.dgProcessosEnviados = new System.Windows.Forms.DataGridView();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,18 +57,21 @@
             this.Nome.DataPropertyName = "Nome_dados";
             this.Nome.HeaderText = "Nome";
             this.Nome.Name = "Nome";
+            this.Nome.ReadOnly = true;
             // 
             // CPF
             // 
             this.CPF.DataPropertyName = "CPF_dados";
             this.CPF.HeaderText = "CPF";
             this.CPF.Name = "CPF";
+            this.CPF.ReadOnly = true;
             // 
             // Status
             // 
             this.Status.DataPropertyName = "Status";
             this.Status.HeaderText = "Status";
             this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
             // 
             // TelaProcessosEnviados
             // 
@@ -76,10 +80,10 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(358, 434);
             this.Controls.Add(this.dgProcessosEnviados);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaProcessosEnviados";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Processos Enviados";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
